@@ -17,6 +17,11 @@ class ci_template {
     private $_navbar = array();
     private $_template = array();
     
+    /**
+     * ci_template::__construct()
+     * 
+     * @return
+     */
     public function __construct() {
         $this->ci = & get_instance();
         $this->ci->load->helper(array('url', 'template'));
@@ -28,13 +33,32 @@ class ci_template {
         $this->css_all['top'] = array_merge($this->css_all['top'], (array) $this->_config['load_css']);
     }
 
+    /**
+     * ci_template::load()
+     * 
+     * @param mixed $view
+     * @param mixed $data
+     * @return
+     */
     function load($view, array $data = array()) {
         $this->_template['_views'][] = $view;
         $this->_template[$view] = $data;
     }
+    /**
+     * ci_template::part()
+     * 
+     * @param mixed $view
+     * @param mixed $data
+     * @return
+     */
     function part($view,$data =  array()){
         return $this->ci->load->view($view,$data,TRUE);
     }
+    /**
+     * ci_template::render()
+     * 
+     * @return
+     */
     function render() {
         ob_start();
         foreach ($this->_template['_views'] as $view) {
@@ -48,6 +72,11 @@ class ci_template {
         $this->build_template();
     }
 
+    /**
+     * ci_template::build_template()
+     * 
+     * @return
+     */
     function build_template() {
        // $this->_navbar();
         $this->_title();
@@ -56,10 +85,24 @@ class ci_template {
         $this->ci->parser->parse($tpl, $this->data);
     }
 
+    /**
+     * ci_template::set()
+     * 
+     * @param mixed $name
+     * @param mixed $value
+     * @return
+     */
     function set($name, $value) {
         $this->data[$name] = $value;
     }
 
+    /**
+     * ci_template::add_js()
+     * 
+     * @param mixed $js
+     * @param string $position
+     * @return
+     */
     public function add_js($js/* name string */, $position = 'footer' /* top|footer */) {
         //insert js in array if not exists
         if (isset($this->js_all[$position]) && !in_array($js, $this->js_all[$position])) {
@@ -70,6 +113,13 @@ class ci_template {
         }
     }
 
+    /**
+     * ci_template::add_css()
+     * 
+     * @param mixed $css
+     * @param string $position
+     * @return
+     */
     public function add_css($css, $position = 'footer' /* top|footer */) {
 
         //insert css in array if not exists
@@ -80,6 +130,12 @@ class ci_template {
         }
     }
 
+    /**
+     * ci_template::show_js()
+     * 
+     * @param string $position
+     * @return
+     */
     private function show_js($position = 'footer' /* top|footer */) {
 
         $common = '';
@@ -105,6 +161,12 @@ class ci_template {
         return $urlbase . $libray . $plugins . $common;
     }
 
+    /**
+     * ci_template::show_css()
+     * 
+     * @param string $position
+     * @return
+     */
     private function show_css($position = 'footer' /* top|footer */) {
         $common = '';
         $plugins = '';
@@ -135,14 +197,32 @@ class ci_template {
         return $libray . $plugins . $common;
     }
 
+    /**
+     * ci_template::navbar()
+     * 
+     * @param mixed $data
+     * @param string $name
+     * @return
+     */
     function navbar($data = null , $name = 'navbar') {
         $this->data[$name] = $data;
     }
 
+    /**
+     * ci_template::title()
+     * 
+     * @param mixed $title
+     * @return
+     */
     function title($title) {
         return $this->_title = $this->_title;
     }
 
+    /**
+     * ci_template::_title()
+     * 
+     * @return
+     */
     function _title() {
         $this->data['title'] = $this->_title;
     }
