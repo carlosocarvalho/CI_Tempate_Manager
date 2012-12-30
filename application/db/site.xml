@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <structure>
+        <table name="menus">
+            <columns>
+                <label>id</label>
+                <label>label</label>
+                <label>link</label>
+                <label>tipo</label>
+            </columns>
+        </table>
+    </structure>
+    <database>
+        <table name="menus">
+            <column name="id">1</column>
+            <column name="label"><![CDATA[ <span class="win-commandimage win-commandring">!</span><span class="win-label">Home</span>]]></column>
+            <column name="link">#</column>
+            <column name="tipo">1</column>
+        </table>
+        <table name="menus">
+            <column name="id">2</column>
+            <column name="label"><![CDATA[ <span class="win-commandimage win-commandring">&#x0041;</span><span class="win-label">Contato</span>]]></column>
+            <column name="link">#</column>
+            <column name="tipo">1</column>
+        </table>        
+    </database>    
+</root>
